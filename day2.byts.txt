@@ -1,0 +1,105 @@
+1.REMOVE DUPLICATES FROM SORTED ARRAY(LEETCODE NO:26)
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int n=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]!=nums[i-1]){
+                nums[n++]=nums[i];
+            }
+        }
+        return n;
+    }
+}
+-----------------------------------------------------------------------------------------------
+2.MAX CONCECUTIVE ONES(LEETCODE NO:485)
+
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int count=0;
+        int max=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==1)
+            count++;
+            else
+            count=0;
+            max=Math.max(max,count);
+        }
+        return max;
+        
+    }
+}
+-----------------------------------------------------------------------------------------------
+3.MAJORITY ELEMENT(LEETCODE NO:169)
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count=0;
+        int ele=0;
+        for(int num:nums){
+            if(count==0){
+                ele=num;
+
+            }
+            if(num==ele)count+=1;
+            else count-=1;
+        }
+        return ele;
+        
+    }
+}
+----------------------------------------------------------------------------------------------
+4.SORTED COLORS(LEETCODE NO:75)
+
+void sortColors(int* nums, int numsSize){
+    int temp;
+    for(int i=0;i<numsSize;i++){
+        for(int j=i+1;j<numsSize;j++){
+            if(nums[i]>nums[j]){
+                temp=nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+            }
+        }
+    }
+    for(int i=0;i<numsSize;i++){
+        printf("%d",nums[i]);
+    }
+}
+--------------------------------------------------------------------------------------------------
+5.MAXIMUM SUBARRAY(LEETCODE NO:53)
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int sum=0;
+        int maxi=nums[0];
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            if(sum>maxi)maxi=sum;
+            if(sum<0)sum=0;
+        }
+        return maxi;
+        
+    }
+}
+----------------------------------------------------------------------------------------------------
+6.FIND THE DUPLICTE NUMBER(LEETCODE NO:287)
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow=nums[0];
+        int fast=nums[0];
+        do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        }
+        while(slow!=fast);
+        fast=nums[0];
+        while(slow!=fast){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
+    }
+}
+--------------------------------------------------------------------------------------------
